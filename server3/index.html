@@ -1,1 +1,43 @@
-Serving from server 3
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+
+export default function CreativePortfolio() {
+  const projects = [
+    { title: 'AI Dashboard', desc: 'An interactive dashboard for monitoring AI model performance.', image: 'https://source.unsplash.com/800x600/?dashboard,tech' },
+    { title: 'Travel App', desc: 'Mobile-first app for exploring destinations around the world.', image: 'https://source.unsplash.com/800x600/?travel,app' },
+    { title: 'E-commerce Site', desc: 'A sleek online shop with real-time cart updates and analytics.', image: 'https://source.unsplash.com/800x600/?shopping,website' }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-800 to-pink-700 text-white">
+      <header className="text-center py-16">
+        <motion.h1 initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-5xl font-extrabold mb-4">
+          My Creative Portfolio
+        </motion.h1>
+        <p className="text-lg opacity-90 max-w-2xl mx-auto">
+          Exploring the fusion of design and technology to build stunning web experiences.
+        </p>
+      </header>
+
+      <section className="grid md:grid-cols-3 gap-8 px-8 pb-16">
+        {projects.map((p, i) => (
+          <motion.div key={i} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.2 }}>
+            <Card className="bg-white/10 backdrop-blur-lg border-none shadow-xl hover:scale-105 transition-transform">
+              <img src={p.image} alt={p.title} className="rounded-t-2xl h-56 w-full object-cover" />
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-2">{p.title}</h3>
+                <p className="text-sm opacity-80 mb-4">{p.desc}</p>
+                <Button className="bg-pink-500 hover:bg-pink-600">View Project</Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </section>
+
+      <footer className="text-center py-8 border-t border-white/20">
+        <p className="opacity-75">© 2025 My Creative Portfolio — Built with ❤️ and React</p>
+      </footer>
+    </div>
+  );
+}

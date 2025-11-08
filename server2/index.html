@@ -1,1 +1,73 @@
-Serving from server 2
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Sparkles, Globe, Mail } from 'lucide-react';
+
+export default function FancyModernWebsite() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white flex flex-col">
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center flex-1 text-center px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-5xl md:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 to-cyan-400"
+        >
+          Welcome to the Future of Design
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="text-lg md:text-xl text-gray-300 max-w-2xl"
+        >
+          Sleek. Responsive. Fast. Experience a next-generation website built for modern creators and innovators.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-8 flex gap-4"
+        >
+          <Button size="lg" className="bg-fuchsia-600 hover:bg-fuchsia-700">Get Started</Button>
+          <Button size="lg" variant="outline" className="text-white border-gray-500 hover:bg-gray-800">Learn More</Button>
+        </motion.div>
+      </section>
+
+      {/* Feature Section */}
+      <section className="py-20 bg-black/40 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+          {[{
+            icon: <Sparkles className="w-10 h-10 text-fuchsia-400" />,
+            title: 'Creative Animations',
+            desc: 'Smooth transitions and beautiful motion powered by Framer Motion.'
+          }, {
+            icon: <Globe className="w-10 h-10 text-cyan-400" />,
+            title: 'Global Performance',
+            desc: 'Optimized for users around the world with blazing fast load times.'
+          }, {
+            icon: <Mail className="w-10 h-10 text-purple-400" />,
+            title: 'Contact Ready',
+            desc: 'Built-in form hooks and API-ready structure for instant connections.'
+          }].map((feature, i) => (
+            <motion.div key={i} whileHover={{ scale: 1.05 }}>
+              <Card className="bg-gray-900/60 border-gray-800">
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className="flex justify-center">{feature.icon}</div>
+                  <h3 className="text-xl font-semibold">{feature.title}</h3>
+                  <p className="text-gray-400">{feature.desc}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-6 text-center text-gray-500 border-t border-gray-800">
+        <p>© {new Date().getFullYear()} FancyModernWeb. Built with ❤️ using React + Tailwind + Framer Motion.</p>
+      </footer>
+    </div>
+  );
+}
